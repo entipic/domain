@@ -2,18 +2,18 @@ import { BaseEntity } from "./entities/base";
 import { RepositoryUpdateData } from "./repository";
 import { validate as joiSchemaValidate, SchemaLike } from 'joi';
 
-export interface EntityValidator<T extends BaseEntity> {
+export interface IEntityValidator<T extends BaseEntity> {
     onCreate(data: T): T
     onUpdate(data: RepositoryUpdateData<T>): RepositoryUpdateData<T>
 }
 
-export interface EntityValidatorOptions {
+export interface IEntityValidatorOptions {
     createSchema: any
     updateSchema: any
 }
 
-export class JoiEntityValidator<T extends BaseEntity> implements EntityValidator<T> {
-    constructor(private options: EntityValidatorOptions) { }
+export class JoiEntityValidator<T extends BaseEntity> implements IEntityValidator<T> {
+    constructor(private options: IEntityValidatorOptions) { }
 
     onCreate(data: T) {
         const result = validateSchema(this.options.createSchema, data);

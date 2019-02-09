@@ -31,7 +31,7 @@ export {
 } from './repository';
 
 export {
-    EntityValidator,
+    IEntityValidator,
     JoiEntityValidator,
 } from './entity-validator';
 
