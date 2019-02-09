@@ -18,7 +18,7 @@ export {
     BaseEntity,
     BaseEntityId,
     Dictionary,
-} from './entities';
+} from './entities/base';
 
 export {
     UseCase,

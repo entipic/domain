@@ -1,4 +1,4 @@
-import { BaseEntity } from "./entities";
+import { BaseEntity } from "./entities/base";
 import { RepositoryUpdateData } from "./repository";
 import { validate as joiSchemaValidate, SchemaLike } from 'joi';
 

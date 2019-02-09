@@ -1,4 +1,4 @@
-import { BaseEntity, BaseEntityId } from "./entities";
+import { BaseEntity, BaseEntityId } from "./entities/base";
 import { Repository, RepositoryUpdateData, RepositoryAccessOptions } from "./repository";
 import { EntityValidator } from "./entity-validator";
 
