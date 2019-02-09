@@ -1,8 +1,8 @@
 import shortid = require("shortid");
-import { EntityType, Entity } from "./entity";
+import { EntityType, Entity } from "./topic";
 import { clearText, atonic, uniq } from "../helpers";
 
-export type EntityBuildParams = {
+export type TopicBuildParams = {
     name: string
     lang: string
     type?: EntityType
@@ -22,18 +22,18 @@ export type EntityBuildParams = {
     popularity?: number
 }
 
-export class EntityHelper {
+export class TopicHelper {
     static newId() {
         return shortid();
     }
 
-    static build(params: EntityBuildParams) {
+    static build(params: TopicBuildParams) {
         const name = params.name.trim();
         const lang = params.lang.trim().toLowerCase();
 
         const createdAt = new Date().toISOString();
-        const slug = EntityHelper.slug(name, lang);
-        const id = EntityHelper.newId();
+        const slug = TopicHelper.slug(name, lang);
+        const id = TopicHelper.newId();
 
         const pictureId = params.pictureId.trim();
         const pictureHost = params.pictureHost.trim();
@@ -76,7 +76,7 @@ export class EntityHelper {
 
     static slug(name: string, lang: string) {
         const sname = lang === 'en' ? name : `${name}-${lang}`;
-        return EntityHelper.uniqueName(sname).replace(/\s+/g, '-');
+        return TopicHelper.uniqueName(sname).replace(/\s+/g, '-');
     }
 
     static uniqueName(name: string) {

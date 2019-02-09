@@ -12,7 +12,7 @@ export type UniqueName = {
     wikiPageTitle?: string
 
     pictureId: string
-    entityId: string
+    topicId: string
 
     popularity: number
 
@@ -37,7 +37,7 @@ const schema = {
     wikiPageTitle: Joi.string().min(2).max(250).trim(),
 
     pictureId: Joi.string().regex(/^[a-z0-9]{32}$/),
-    entityId: Joi.string().regex(/^[a-zA-Z0-9_-]{2,16}$/),
+    topicId: Joi.string().regex(/^[a-zA-Z0-9_-]{2,16}$/),
 
     popularity: Joi.number().integer().min(0),
 
@@ -55,7 +55,7 @@ const createSchema = Joi.object().keys({
     wikiPageTitle: schema.wikiPageTitle,
 
     pictureId: schema.pictureId.required(),
-    entityId: schema.entityId.required(),
+    topicId: schema.topicId.required(),
 
     popularity: schema.popularity.required(),
 
@@ -69,7 +69,7 @@ const updateSchema = Joi.object().keys({
         wikiPageTitle: schema.wikiPageTitle,
 
         pictureId: schema.pictureId,
-        entityId: schema.entityId,
+        topicId: schema.topicId,
 
         popularity: schema.popularity,
     }),

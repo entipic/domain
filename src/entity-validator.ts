@@ -1,5 +1,5 @@
 import { BaseEntity } from "./entities/base";
-import { RepositoryUpdateData } from "./repository";
+import { RepositoryUpdateData } from "./repositories/repository";
 import { validate as joiSchemaValidate, SchemaLike } from 'joi';
 
 export interface IEntityValidator<T extends BaseEntity> {

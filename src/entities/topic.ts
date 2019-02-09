@@ -1,16 +1,16 @@
 import * as Joi from 'joi';
 import { JoiEntityValidator } from '../entity-validator';
 
-export type EntityType = 'PERSON' | 'PLACE' | 'ORG' | 'EVENT' | 'PRODUCT';
+export type TopicType = 'PERSON' | 'PLACE' | 'ORG' | 'EVENT' | 'PRODUCT';
 
-export type Entity = {
+export type Topic = {
     id: string
     name: string
     slug: string
 
     lang: string
 
-    type?: EntityType
+    type?: TopicType
 
     wikiPageId?: number
     wikiPageTitle?: string
@@ -29,7 +29,7 @@ export type Entity = {
     createdAt: string
 }
 
-export class EntityValidator extends JoiEntityValidator<Entity>{
+export class EntityValidator extends JoiEntityValidator<Topic>{
     constructor() {
         super({ createSchema, updateSchema })
     }

@@ -1,4 +1,4 @@
-import { BaseEntity, BaseEntityId } from "./entities/base";
+import { BaseEntity, BaseEntityId } from "../entities/base";
 
 
 export interface RepositoryAccessOptions<T extends BaseEntity> {

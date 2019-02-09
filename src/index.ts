@@ -15,26 +15,14 @@ export {
 } from './helpers';
 
 export {
-    BaseEntity,
-    BaseEntityId,
-    Dictionary,
-} from './entities/base';
-
-export {
     UseCase,
 } from './use-case';
 
-export {
-    Repository,
-    RepositoryAccessOptions,
-    RepositoryUpdateData,
-} from './repository';
+export * from './repositories';
 
 export {
     IEntityValidator,
     JoiEntityValidator,
 } from './entity-validator';
 
-export {
-    BaseRepository,
-} from './base-repository';
+export * from './entities';

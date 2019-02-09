@@ -10,7 +10,7 @@ export type UniqueNameBuildParams = {
     wikiPageTitle?: string
 
     pictureId: string
-    entityId: string
+    topicId: string
 
     popularity?: number
 }
@@ -37,7 +37,7 @@ export class UniqueNameHelper {
         const uniqueName = UniqueNameHelper.createUniqueName(name);
         const id = UniqueNameHelper.createId(params);
         const pictureId = params.pictureId.trim();
-        const entityId = params.entityId.trim();
+        const entityId = params.topicId.trim();
 
         const item: UniqueName = {
             id,
@@ -45,7 +45,7 @@ export class UniqueNameHelper {
             lang,
             uniqueName,
             createdAt,
-            entityId,
+            topicId: entityId,
             pictureId,
             popularity: params.popularity || 0,
         };
