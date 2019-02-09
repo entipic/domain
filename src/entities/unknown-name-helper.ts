@@ -21,7 +21,7 @@ export class UnknownNameHelper {
     static createId({ name, lang, country }: { name: string, lang: string, country?: string }) {
         const uniqueName = UnknownNameHelper.createUniqueName(name);
 
-        return md5([lang, country || '', uniqueName].join('|'));
+        return md5([lang, country || '_', uniqueName].join('|'));
     }
 
     static expiresAt(date?: Date) {

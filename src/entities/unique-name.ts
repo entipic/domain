@@ -1,21 +1,25 @@
 import * as Joi from 'joi';
 import { JoiEntityValidator } from '../entity-validator';
 
-export type UnknownName = {
+export type UniqueName = {
     id: string
     lang: string
     country?: string
     name: string
     uniqueName: string
 
-    refIP: string
-    refHost?: string
+    wikiPageId?: number
+    wikiPageTitle?: string
+
+    pictureId: string
+    entityId: string
+
+    popularity: number
 
     createdAt: string
-    expiresAt: number
 }
 
-export class UnknownNameValidator extends JoiEntityValidator<UnknownName>{
+export class UniqueNameValidator extends JoiEntityValidator<UniqueName>{
     constructor() {
         super({ createSchema, updateSchema })
     }
@@ -28,11 +32,16 @@ const schema = {
     country: Joi.string().regex(/^[a-z]{2}$/),
     name: Joi.string().min(2).max(200).trim(),
     uniqueName: Joi.string().min(2).max(200).trim(),
-    refIP: Joi.string().min(5).max(100).trim(),
-    refHost: Joi.string().min(4).max(100).trim(),
+
+    wikiPageId: Joi.number().integer().min(1),
+    wikiPageTitle: Joi.string().min(2).max(250).trim(),
+
+    pictureId: Joi.string().regex(/^[a-z0-9]{32}$/),
+    entityId: Joi.string().regex(/^[a-zA-Z0-9_-]{2,16}$/),
+
+    popularity: Joi.number().integer().min(0),
 
     createdAt: Joi.date().iso().raw(),
-    expiresAt: Joi.date().timestamp('unix').raw(),
 }
 
 const createSchema = Joi.object().keys({
@@ -41,15 +50,28 @@ const createSchema = Joi.object().keys({
     country: schema.country,
     name: schema.name.required(),
     uniqueName: schema.uniqueName.required(),
-    refIP: schema.refIP.required(),
-    refHost: schema.refHost,
+
+    wikiPageId: schema.wikiPageId,
+    wikiPageTitle: schema.wikiPageTitle,
+
+    pictureId: schema.pictureId.required(),
+    entityId: schema.entityId.required(),
+
+    popularity: schema.popularity.required(),
 
     createdAt: schema.createdAt.required(),
-    expiresAt: schema.expiresAt.required(),
 }).required();
 
 const updateSchema = Joi.object().keys({
     id: schema.id.required(),
-    set: Joi.object().keys({}),
+    set: Joi.object().keys({
+        wikiPageId: schema.wikiPageId,
+        wikiPageTitle: schema.wikiPageTitle,
+
+        pictureId: schema.pictureId,
+        entityId: schema.entityId,
+
+        popularity: schema.popularity,
+    }),
     delete: Joi.array().valid(),
 }).or('set', 'delete').required();
