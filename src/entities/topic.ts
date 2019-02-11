@@ -65,10 +65,10 @@ const createSchema = Joi.object().keys({
     slug: schema.slug.required(),
     lang: schema.lang.required(),
 
-    type: schema.type.required(),
+    type: schema.type,
 
-    wikiPageId: schema.wikiPageId.required(),
-    wikiPageTitle: schema.wikiPageTitle.required(),
+    wikiPageId: schema.wikiPageId,
+    wikiPageTitle: schema.wikiPageTitle,
     refIP: schema.refIP.required(),
     refHost: schema.refHost,
     pictureId: schema.pictureId.required(),
