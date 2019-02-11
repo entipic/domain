@@ -37,7 +37,7 @@ export class TopicValidator extends JoiEntityValidator<Topic>{
 
 
 const schema = {
-    id: Joi.string().regex(/^[a-zA-Z0-9_-]{16}$/),
+    id: Joi.string().regex(/^[a-zA-Z0-9_-]{7,16}$/),
     name: Joi.string().min(2).max(200),
     slug: Joi.string().min(2).max(200),
     lang: Joi.string().regex(/^[a-z]{2}$/),
@@ -53,6 +53,9 @@ const schema = {
 
     picturesIds: Joi.array().items(Joi.string().regex(/^[a-z0-9]{32}$/)).unique().min(1).max(10),
 
+    popularity: Joi.number().integer().min(0),
+    description: Joi.string().trim().max(250).truncate(),
+
     createdAt: Joi.date().iso().raw(),
 }
 
@@ -67,11 +70,14 @@ const createSchema = Joi.object().keys({
     wikiPageId: schema.wikiPageId.required(),
     wikiPageTitle: schema.wikiPageTitle.required(),
     refIP: schema.refIP.required(),
-    refHost: schema.refHost.required(),
+    refHost: schema.refHost,
     pictureId: schema.pictureId.required(),
     pictureHost: schema.pictureHost.required(),
 
     picturesIds: schema.picturesIds.required(),
+
+    popularity: schema.popularity.required(),
+    description: schema.description,
 
     createdAt: schema.createdAt.required(),
 }).required();
@@ -87,6 +93,8 @@ const updateSchema = Joi.object().keys({
         pictureHost: schema.pictureHost,
 
         picturesIds: schema.picturesIds,
+        description: schema.description,
+        popularity: schema.popularity,
     }),
     delete: Joi.array().valid(['type']),
 }).or('set', 'delete').required();

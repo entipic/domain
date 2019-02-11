@@ -23,6 +23,7 @@ export {
 export {
     PictureHelper,
     PictureBuildParams,
+    PictureSizeName,
 } from './picture-helper';
 
 export {

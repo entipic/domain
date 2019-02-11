@@ -37,8 +37,14 @@ export class PictureHelper {
         return item;
     }
 
-    static s3Url(pictureId: string, size: PictureSizeName = 'f') {
+    static formatS3Url(pictureId: string) {
+        const size: PictureSizeName = 'f';
         return `https://s3.eu-central-1.amazonaws.com/cdn.entipic.com/${pictureId.substr(0, 3)}/${size}/${pictureId}.jpg`;
+    }
+
+    static formatS3Key(pictureId: string) {
+        const size: PictureSizeName = 'f';
+        return `${pictureId.substr(0, 3)}/${size}/${pictureId}.jpg`;
     }
 
     static getPictureSize(sizeName: PictureSizeName) {
