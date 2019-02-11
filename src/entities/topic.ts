@@ -29,7 +29,7 @@ export type Topic = {
     createdAt: string
 }
 
-export class EntityValidator extends JoiEntityValidator<Topic>{
+export class TopicValidator extends JoiEntityValidator<Topic>{
     constructor() {
         super({ createSchema, updateSchema })
     }

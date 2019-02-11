@@ -1,11 +1,11 @@
 import shortid = require("shortid");
-import { EntityType, Entity } from "./topic";
+import { TopicType, Topic } from "./topic";
 import { clearText, atonic, uniq } from "../helpers";
 
 export type TopicBuildParams = {
     name: string
     lang: string
-    type?: EntityType
+    type?: TopicType
 
     wikiPageId?: number
     wikiPageTitle?: string
@@ -41,7 +41,7 @@ export class TopicHelper {
 
         const refIP = params.refIP;
 
-        const item: Entity = {
+        const item: Topic = {
             id,
             name,
             lang,

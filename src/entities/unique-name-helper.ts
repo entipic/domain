@@ -6,13 +6,8 @@ export type UniqueNameBuildParams = {
     lang: string
     country?: string
 
-    wikiPageId?: number
-    wikiPageTitle?: string
-
     pictureId: string
     topicId: string
-
-    popularity?: number
 }
 
 export class UniqueNameHelper {
@@ -47,17 +42,10 @@ export class UniqueNameHelper {
             createdAt,
             topicId: entityId,
             pictureId,
-            popularity: params.popularity || 0,
         };
 
         if (params.country) {
             item.country = params.country.trim();
-        }
-        if (params.wikiPageId) {
-            item.wikiPageId = params.wikiPageId;
-        }
-        if (params.wikiPageTitle) {
-            item.wikiPageTitle = params.wikiPageTitle.trim();
         }
 
         return item;

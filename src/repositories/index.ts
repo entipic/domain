@@ -22,3 +22,7 @@ export {
     UnknownNameRepository,
     UnknownNamesListParams,
 } from './unknown-name-repository';
+
+export {
+    PictureRepository,
+} from './picture-repository';

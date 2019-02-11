@@ -7,7 +7,7 @@ export {
 export {
     Topic,
     TopicType,
-    EntityValidator,
+    TopicValidator,
 } from './topic';
 
 export {

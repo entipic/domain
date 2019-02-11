@@ -1,5 +1,5 @@
 
-const debug = require('debug')('ournet:domain');
+const debug = require('debug')('entipic:domain');
 
 export abstract class UseCase<DATA, RESULT, OPTIONS> {
 
