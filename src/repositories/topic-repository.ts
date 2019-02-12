@@ -9,4 +9,5 @@ export interface TopicRepository extends Repository<Topic> {
     topicBySlug(slug: string, options?: RepositoryAccessOptions<Topic>): Promise<Topic | null>
     popularTopics(params: TopicsListParams, options?: RepositoryAccessOptions<Topic>): Promise<Topic[]>
     latestTopics(params: TopicsListParams, options?: RepositoryAccessOptions<Topic>): Promise<Topic[]>
+    countTotal(): Promise<number>
 }
