@@ -1,6 +1,6 @@
 import { BaseEntity } from "./entities/base";
 import { RepositoryUpdateData } from "./repositories/repository";
-import { validate as joiSchemaValidate, SchemaLike } from "joi";
+import Joi from "joi";
 
 export interface IEntityValidator<T extends BaseEntity> {
   onCreate(data: T): T;
@@ -8,8 +8,8 @@ export interface IEntityValidator<T extends BaseEntity> {
 }
 
 export interface IEntityValidatorOptions {
-  createSchema: any;
-  updateSchema: any;
+  createSchema: Joi.AnySchema;
+  updateSchema: Joi.AnySchema;
 }
 
 export class JoiEntityValidator<T extends BaseEntity>
@@ -33,8 +33,8 @@ export class JoiEntityValidator<T extends BaseEntity>
   }
 }
 
-function validateSchema<T>(schema: SchemaLike, data: T) {
-  return joiSchemaValidate(data, schema, {
+function validateSchema<T>(schema: Joi.AnySchema, data: T) {
+  return schema.validate(data, {
     allowUnknown: false,
     abortEarly: true,
     convert: true,
