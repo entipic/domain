@@ -1,4 +1,4 @@
-import * as Joi from "joi";
+import Joi from "joi";
 import { JoiEntityValidator } from "../entity-validator";
 
 export type Picture = {
@@ -40,7 +40,7 @@ const updateSchema = Joi.object()
   .keys({
     id: schema.id.required(),
     set: Joi.object().keys({}),
-    delete: Joi.array().valid()
+    delete: Joi.array().allow()
   })
   .or("set", "delete")
   .required();

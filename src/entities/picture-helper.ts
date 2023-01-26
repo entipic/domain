@@ -1,5 +1,5 @@
-import { md5 } from "../helpers";
 import { parse } from "url";
+import { md5 } from "../helpers";
 import { Picture } from "./picture";
 
 export type PictureBuildParams = {

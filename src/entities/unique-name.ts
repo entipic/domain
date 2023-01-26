@@ -1,4 +1,4 @@
-import * as Joi from "joi";
+import Joi from "joi";
 import { JoiEntityValidator } from "../entity-validator";
 
 export type UniqueName = {
@@ -55,7 +55,7 @@ const updateSchema = Joi.object()
       pictureId: schema.pictureId,
       topicId: schema.topicId
     }),
-    delete: Joi.array().valid()
+    delete: Joi.array().allow()
   })
   .or("set", "delete")
   .required();
