@@ -41,7 +41,7 @@ const schema = {
   slug: Joi.string().min(2).max(200),
   lang: Joi.string().regex(/^[a-z]{2}$/),
 
-  type: Joi.string().allow(["PERSON", "PLACE", "ORG", "EVENT", "PRODUCT"]),
+  type: Joi.string().allow("PERSON", "PLACE", "ORG", "EVENT", "PRODUCT"),
 
   wikiPageId: Joi.number().integer().min(1),
   wikiPageTitle: Joi.string().min(2).max(200),
@@ -102,7 +102,7 @@ const updateSchema = Joi.object()
       description: schema.description,
       popularity: schema.popularity
     }),
-    delete: Joi.array().allow(["type"])
+    delete: Joi.array().allow("type")
   })
   .or("set", "delete")
   .required();
