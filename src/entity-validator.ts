@@ -1,44 +1,46 @@
 import { BaseEntity } from "./entities/base";
 import { RepositoryUpdateData } from "./repositories/repository";
-import { validate as joiSchemaValidate, SchemaLike } from 'joi';
+import { validate as joiSchemaValidate, SchemaLike } from "joi";
 
 export interface IEntityValidator<T extends BaseEntity> {
-    onCreate(data: T): T
-    onUpdate(data: RepositoryUpdateData<T>): RepositoryUpdateData<T>
+  onCreate(data: T): T;
+  onUpdate(data: RepositoryUpdateData<T>): RepositoryUpdateData<T>;
 }
 
 export interface IEntityValidatorOptions {
-    createSchema: any
-    updateSchema: any
+  createSchema: any;
+  updateSchema: any;
 }
 
-export class JoiEntityValidator<T extends BaseEntity> implements IEntityValidator<T> {
-    constructor(private options: IEntityValidatorOptions) { }
+export class JoiEntityValidator<T extends BaseEntity>
+  implements IEntityValidator<T>
+{
+  constructor(private options: IEntityValidatorOptions) {}
 
-    onCreate(data: T) {
-        const result = validateSchema(this.options.createSchema, data);
-        if (result.error) {
-            throw result.error;
-        }
-        return result.value;
+  onCreate(data: T) {
+    const result = validateSchema(this.options.createSchema, data);
+    if (result.error) {
+      throw result.error;
     }
-    onUpdate(data: RepositoryUpdateData<T>) {
-        const result = validateSchema(this.options.updateSchema, data);
-        if (result.error) {
-            throw result.error;
-        }
-        return result.value;
+    return result.value;
+  }
+  onUpdate(data: RepositoryUpdateData<T>) {
+    const result = validateSchema(this.options.updateSchema, data);
+    if (result.error) {
+      throw result.error;
     }
+    return result.value;
+  }
 }
 
 function validateSchema<T>(schema: SchemaLike, data: T) {
-    return joiSchemaValidate<T>(data, schema, {
-        allowUnknown: false,
-        abortEarly: true,
-        convert: true,
-        noDefaults: false,
-        presence: 'optional',
-        stripUnknown: false,
-        skipFunctions: false,
-    });
+  return joiSchemaValidate<T>(data, schema, {
+    allowUnknown: false,
+    abortEarly: true,
+    convert: true,
+    noDefaults: false,
+    presence: "optional",
+    stripUnknown: false,
+    skipFunctions: false
+  });
 }

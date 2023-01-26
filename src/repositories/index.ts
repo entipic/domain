@@ -1,28 +1,18 @@
+export { BaseRepository } from "./base-repository";
 
 export {
-    BaseRepository,
-} from './base-repository';
+  Repository,
+  RepositoryAccessOptions,
+  RepositoryUpdateData
+} from "./repository";
+
+export { TopicRepository, TopicsListParams } from "./topic-repository";
+
+export { UniqueNameRepository } from "./unique-name-repository";
 
 export {
-    Repository,
-    RepositoryAccessOptions,
-    RepositoryUpdateData,
-} from './repository';
+  UnknownNameRepository,
+  UnknownNamesListParams
+} from "./unknown-name-repository";
 
-export {
-    TopicRepository,
-    TopicsListParams,
-} from './topic-repository';
-
-export {
-    UniqueNameRepository,
-} from './unique-name-repository';
-
-export {
-    UnknownNameRepository,
-    UnknownNamesListParams,
-} from './unknown-name-repository';
-
-export {
-    PictureRepository,
-} from './picture-repository';
+export { PictureRepository } from "./picture-repository";

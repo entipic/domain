@@ -1,41 +1,41 @@
-import * as Joi from 'joi';
-import { JoiEntityValidator } from '../entity-validator';
+import * as Joi from "joi";
+import { JoiEntityValidator } from "../entity-validator";
 
 export type UnknownName = {
-    id: string
-    lang: string
-    country?: string
-    name: string
-    uniqueName: string
+  id: string;
+  lang: string;
+  country?: string;
+  name: string;
+  uniqueName: string;
 
-    refIP: string
-    refHost?: string
+  refIP: string;
+  refHost?: string;
 
-    createdAt: string
-    expiresAt: number
+  createdAt: string;
+  expiresAt: number;
+};
+
+export class UnknownNameValidator extends JoiEntityValidator<UnknownName> {
+  constructor() {
+    super({ createSchema, updateSchema });
+  }
 }
-
-export class UnknownNameValidator extends JoiEntityValidator<UnknownName>{
-    constructor() {
-        super({ createSchema, updateSchema })
-    }
-}
-
 
 const schema = {
-    id: Joi.string().regex(/^[a-z0-9]{32}$/),
-    lang: Joi.string().regex(/^[a-z]{2}$/),
-    country: Joi.string().regex(/^[a-z]{2}$/),
-    name: Joi.string().min(2).max(200).trim(),
-    uniqueName: Joi.string().min(2).max(200).trim(),
-    refIP: Joi.string().min(5).max(100).trim(),
-    refHost: Joi.string().min(4).max(100).trim(),
+  id: Joi.string().regex(/^[a-z0-9]{32}$/),
+  lang: Joi.string().regex(/^[a-z]{2}$/),
+  country: Joi.string().regex(/^[a-z]{2}$/),
+  name: Joi.string().min(2).max(200).trim(),
+  uniqueName: Joi.string().min(2).max(200).trim(),
+  refIP: Joi.string().min(5).max(100).trim(),
+  refHost: Joi.string().min(4).max(100).trim(),
 
-    createdAt: Joi.date().iso().raw(),
-    expiresAt: Joi.date().timestamp('unix').raw(),
-}
+  createdAt: Joi.date().iso().raw(),
+  expiresAt: Joi.date().timestamp("unix").raw()
+};
 
-const createSchema = Joi.object().keys({
+const createSchema = Joi.object()
+  .keys({
     id: schema.id.required(),
     lang: schema.lang.required(),
     country: schema.country,
@@ -45,11 +45,15 @@ const createSchema = Joi.object().keys({
     refHost: schema.refHost,
 
     createdAt: schema.createdAt.required(),
-    expiresAt: schema.expiresAt.required(),
-}).required();
+    expiresAt: schema.expiresAt.required()
+  })
+  .required();
 
-const updateSchema = Joi.object().keys({
+const updateSchema = Joi.object()
+  .keys({
     id: schema.id.required(),
     set: Joi.object().keys({}),
-    delete: Joi.array().valid(),
-}).or('set', 'delete').required();
+    delete: Joi.array().valid()
+  })
+  .or("set", "delete")
+  .required();
